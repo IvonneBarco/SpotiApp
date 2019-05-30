@@ -1,13 +1,15 @@
-<ul>
+<!--<ul>
     <li *ngFor="let pais of paises">
         {{pais.name}}
     </li>
-</ul>
+</ul>>-->
 
-<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-    <div class="card-header">Header</div>
-    <div class="card-body">
-        <h5 class="card-title">Primary card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+<div class="card-columns">
+    <div *ngFor="let cancion of nuevasCanciones" class="card" style="width: 18rem;">
+        <img [src]="cancion.images[0].url" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ cancion.name }} </h5>
+            <p class="card-text"><span *ngFor="let artista of cancion.artists" class="badge badge-primary"> {{ artista.name }} </span></p>
+        </div>
     </div>
 </div>

@@ -1,5 +1,4 @@
-import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Component } from "@angular/core";
 import { SpotifyService } from "../../services/spotify.service";
 
 @Component({
@@ -9,14 +8,19 @@ import { SpotifyService } from "../../services/spotify.service";
 })
 export class HomeComponent {
   paises: any[] = [];
+  nuevasCanciones: any[] = [];
 
-  constructor(private http: HttpClient, private spotity: SpotifyService) {
+  constructor(private spotity: SpotifyService) {
     /*this.http.get("https://restcountries.eu/rest/v2/lang/es")
       .subscribe((result: any) => {
         this.paises = result;
         console.log(result);
       });*/
 
-    spotity.getNewReleases();
+    this.spotity.getNewReleases()
+      .subscribe((data: any) => {
+      console.log(data.albums.items);
+      this.nuevasCanciones = data.albums.items;
+    });
   }
 }

@@ -9,6 +9,7 @@ import { SpotifyService } from "../../services/spotify.service";
 export class HomeComponent {
   paises: any[] = [];
   nuevasCanciones: any[] = [];
+  loading: boolean;
 
   constructor(private spotity: SpotifyService) {
     /*this.http.get("https://restcountries.eu/rest/v2/lang/es")
@@ -16,11 +17,14 @@ export class HomeComponent {
         this.paises = result;
         console.log(result);
       });*/
+    
+    this.loading = true;
 
     this.spotity.getNewReleases()
       .subscribe((data: any) => {
-      //console.log(data);
+      console.log(data);
       this.nuevasCanciones = data;
+      this.loading = false;
     });
   }
 }

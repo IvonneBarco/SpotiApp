@@ -10,6 +10,7 @@ export class HomeComponent {
   paises: any[] = [];
   nuevasCanciones: any[] = [];
   loading: boolean;
+  error: boolean;
 
   constructor(private spotity: SpotifyService) {
     /*this.http.get("https://restcountries.eu/rest/v2/lang/es")
@@ -19,6 +20,7 @@ export class HomeComponent {
       });*/
     
     this.loading = true;
+    this.error = false;
 
     this.spotity.getNewReleases()
       .subscribe((data: any) => {

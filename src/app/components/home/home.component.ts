@@ -11,6 +11,7 @@ export class HomeComponent {
   nuevasCanciones: any[] = [];
   loading: boolean;
   error: boolean;
+  mensajeError: string;
 
   constructor(private spotity: SpotifyService) {
     /*this.http.get("https://restcountries.eu/rest/v2/lang/es")
@@ -27,6 +28,11 @@ export class HomeComponent {
       console.log(data);
       this.nuevasCanciones = data;
       this.loading = false;
+    },(errorServicio) => {
+      this.error = true;
+      this.mensajeError = errorServicio.error.error.message
+      console.log(errorServicio);
+      
     });
   }
 }
